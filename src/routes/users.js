@@ -10,7 +10,7 @@ router.post('/register', async (req, res)=>{
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type'); // If needed
     res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-    const {username, password} = req.body
+    const {username, password,name,email} = req.body
 
     const user = await userModel.findOne({username});
 
@@ -19,7 +19,7 @@ router.post('/register', async (req, res)=>{
     }
 
     const hashedPassword = await bcrypt.hash(password,10)
-    const newUser = new userModel({username,password: hashedPassword})
+    const newUser = new userModel({username,password: hashedPassword,name,email})
     await newUser.save()
 
     res.json({  message:"User added"});
