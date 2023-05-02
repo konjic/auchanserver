@@ -6,6 +6,10 @@ const userModel = require('../models/Users')
 const router = express.Router()
 
 router.post('/register', async (req, res)=>{
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type'); // If needed
+    res.setHeader('Access-Control-Allow-Credentials', true); // If needed
     const {username, password} = req.body
 
     const user = await userModel.findOne({username});
@@ -22,6 +26,10 @@ router.post('/register', async (req, res)=>{
 })
 
 router.post('/login', async (req, res)=>{
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type'); // If needed
+    res.setHeader('Access-Control-Allow-Credentials', true); // If needed
     const {username, password} = req.body
 
     const user = await userModel.findOne({username});

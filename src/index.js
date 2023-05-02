@@ -15,6 +15,16 @@ app.use('/auth', userRouter)
 
 connectDB()
 
+app.get('/', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type'); // If needed
+    res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+
+    res.send('Hey this is my API running 🥳a')
+  })
+
+
 app.listen(5000, ()=>{console.log("test")})
 
 if(process.env.NODE_ENV ==='production'){
